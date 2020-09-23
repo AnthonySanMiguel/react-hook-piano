@@ -10,27 +10,27 @@ const NullSoundFontPlayer = {
         return NullSoundFontPlayerNoteAudio;
     }
 };
+
 const AudioPlayer = () => {
-    //Audio Context
     const audioContext = AudioContext && new AudioContext();
 
-    //soundPlayer
-    let soundPlayer = NullSoundFontPlayer;
-    //setInstrument
+    let soundFPlayer = NullSoundFontPlayer;
+
     const Player = {
         setInstrument(instrumentName) {
             SoundFontPlayer.instrument(audioContext, instrumentName)
-                .then(soundfontPlayer => {
-                    soundPlayer = soundfontPlayer;
+                .then(soundFontPlayer => {
+                    soundFPlayer = soundFontPlayer;
                 })
                 .catch(e => {
-                    soundPlayer = NullSoundFontPlayer;
+                    soundFPlayer = NullSoundFontPlayer;
                 });
         },
         playNote(note) {
-            soundPlayer.play(note);
+            return soundFPlayer.play(note);
         }
     };
+
     return Player;
 };
 
